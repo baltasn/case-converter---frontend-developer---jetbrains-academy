@@ -30,6 +30,12 @@
     }
 }
 
+@media (max-width: 1190px) and (min-width:821px) {
+    .aButton {
+        width: 30%;
+    }
+}
+
 textarea {
     font-size: 1.3em;
     width: 100%;

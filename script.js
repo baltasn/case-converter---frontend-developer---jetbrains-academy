@@ -3,6 +3,8 @@ let upperCaseButton = document.getElementById("upper-case");
 let lowerCaseButton = document.getElementById("lower-case");
 let properCaseButton = document.getElementById("proper-case");
 let sentenceCaseButton = document.getElementById("sentence-case");
+let saveFileButton = document.getElementById("save-text-file");
+let clearButton = document.getElementById("clear-text");
 let textBox = document.getElementById("myTextArea");
 
 
@@ -11,6 +13,8 @@ upperCaseButton.addEventListener("click", upperCase);
 lowerCaseButton.addEventListener("click", lowerCase);
 properCaseButton.addEventListener("click", properCase);
 sentenceCaseButton.addEventListener("click", sentenceCase);
+saveFileButton.addEventListener("click", downloadFile);
+clearButton.addEventListener("click", clearTextArea);
 
 
 function upperCase() {
@@ -25,7 +29,12 @@ function properCase() {
 function sentenceCase() {
   textBox.value = convertToSentenceCase(convertToLowerCase(getTextFromTextBox()));
 }
-
+function clearTextArea() {
+  textBox.value = '';
+}
+function downloadFile() {
+  download("text.txt", getTextFromTextBox())
+}
 
 function getTextFromTextBox() {
   return textBox.value;
@@ -87,6 +96,20 @@ function convertToSentenceCase(text) {
     }
   }
   return charactersArray.join('');
+}
+
+//copy-paste from jetbrains
+function download(filename, text) {
+  let element = document.createElement('a');
+  element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+  element.setAttribute('download', filename);
+
+  element.style.display = 'none';
+  document.body.appendChild(element);
+
+  element.click();
+
+  document.body.removeChild(element);
 }
 
 
